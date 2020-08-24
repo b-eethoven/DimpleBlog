@@ -20,6 +20,8 @@ import {getDicts} from "@/api/system/dict/data";
 import {getConfigKey} from "@/api/system/config";
 import {parseTime, resetForm, addDateRange, selectDictLabel} from "@/utils/dimple";
 import Pagination from "@/components/Pagination";
+import mouse from '@/router/mouseClick'
+Vue.use(mouse)
 
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts;

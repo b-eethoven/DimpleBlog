@@ -8,7 +8,7 @@ onload = function() {
   }
   $html.onclick = function(e) {
     var $elem = document.createElement("b");
-    $elem.style.color = "#E94F06";
+    $elem.style.color = '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
     $elem.style.zIndex = 9999;
     $elem.style.position = "absolute";
     $elem.style.select = "none";
@@ -42,3 +42,4 @@ onload = function() {
     $body.appendChild($elem);
   };
 };
+
