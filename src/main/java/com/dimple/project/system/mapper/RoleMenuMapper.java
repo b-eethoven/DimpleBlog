@@ -1,6 +1,7 @@
 package com.dimple.project.system.mapper;
 
 import com.dimple.project.system.domain.RoleMenu;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @author: Dimple
  * @date: 10/22/19
  */
+@Repository
 public interface RoleMenuMapper {
     /**
      * 查询菜单使用数量

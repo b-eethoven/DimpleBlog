@@ -2,6 +2,7 @@ package com.dimple.project.system.service;
 
 import com.dimple.framework.web.domain.TreeSelect;
 import com.dimple.project.system.domain.Menu;
+import com.dimple.project.system.domain.SysUser;
 import com.dimple.project.system.domain.vo.RouterVo;
 
 import java.util.List;
@@ -33,10 +34,10 @@ public interface MenuService {
     /**
      * 根据用户ID查询菜单树信息
      *
-     * @param userId 用户ID
+     * @param user 用户ID
      * @return 菜单列表
      */
-    List<Menu> selectMenuTreeByUserId(Long userId);
+    List<Menu> selectMenuTreeByUserId(SysUser user);
 
     /**
      * 根据角色ID查询菜单树信息

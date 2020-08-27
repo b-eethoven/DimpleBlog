@@ -25,7 +25,7 @@
     </resultMap>
 
     <resultMap id="RoleResult" type="com.dimple.project.system.domain.Role">
-        <id property="id" column="id"/>
+        <id property="id" column="role_id"/>
         <result property="roleName" column="role_name"/>
         <result property="roleKey" column="role_key"/>
         <result property="roleSort" column="role_sort"/>
@@ -34,7 +34,7 @@
 
     <sql id="selectUserVo">
         select u.id, u.user_name, u.nick_name, u.email, u.avatar, u.phone, u.password, u.sex, u.status, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,u.delete_by,u.delete_time,
-        r.id, r.role_name, r.role_key, r.role_sort, r.status as role_status
+        ur.role_id, r.role_name, r.role_key, r.role_sort, r.status as role_status
         from user u
 		    left join sys_user_role ur on u.id = ur.user_id
 		    left join role r on r.id = ur.role_id

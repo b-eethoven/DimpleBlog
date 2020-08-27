@@ -89,8 +89,4 @@ public class SecurityUtils {
     public static boolean isAdmin(Long userId) {
         return userId != null && 1L == userId;
     }
-
-    public static void main(String[] args) {
-        System.out.println(encryptPassword("admin123"));
-    }
 }

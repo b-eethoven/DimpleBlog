@@ -58,7 +58,7 @@ public class SysLoginService {
             throw new CaptchaException();
         }
         // 用户验证
-        Authentication authentication = null;
+        Authentication authentication ;
         try {
             // 该方法会去调用UserDetailsServiceImpl.loadUserByUsername
             authentication = authenticationManager

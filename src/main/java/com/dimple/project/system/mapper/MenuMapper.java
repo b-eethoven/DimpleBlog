@@ -2,6 +2,7 @@ package com.dimple.project.system.mapper;
 
 import com.dimple.project.system.domain.Menu;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @author: Dimple
  * @date: 10/22/19
  */
+@Repository
 public interface MenuMapper {
     /**
      * 查询系统菜单列表

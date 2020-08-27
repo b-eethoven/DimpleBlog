@@ -5,6 +5,7 @@ import com.dimple.common.utils.SecurityUtils;
 import com.dimple.common.utils.StringUtils;
 import com.dimple.framework.web.domain.TreeSelect;
 import com.dimple.project.system.domain.Menu;
+import com.dimple.project.system.domain.SysUser;
 import com.dimple.project.system.domain.vo.MetaVo;
 import com.dimple.project.system.domain.vo.RouterVo;
 import com.dimple.project.system.mapper.MenuMapper;
@@ -56,12 +57,12 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<Menu> selectMenuTreeByUserId(Long userId) {
+    public List<Menu> selectMenuTreeByUserId(SysUser user) {
         List<Menu> menus;
-        if (SecurityUtils.isAdmin(userId)) {
+        if (user.isAdmin()) {
             menus = menuMapper.selectMenuTreeAll();
         } else {
-            menus = menuMapper.selectMenuTreeByUserId(userId);
+            menus = menuMapper.selectMenuTreeByUserId(user.getId());
         }
         return getChildPerms(menus, 0);
     }
@@ -95,8 +96,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<Menu> buildMenuTree(List<Menu> menus) {
         List<Menu> returnList = new ArrayList<>();
-        for (Iterator<Menu> iterator = menus.iterator(); iterator.hasNext(); ) {
-            Menu t = iterator.next();
+        for (Menu t : menus) {
             // 根据传入的某个父节点ID,遍历该父节点的所有子节点
             if (t.getParentId() == 0) {
                 recursionFn(menus, t);
@@ -182,8 +182,7 @@ public class MenuServiceImpl implements MenuService {
      */
     public List<Menu> getChildPerms(List<Menu> list, int parentId) {
         List<Menu> returnList = new ArrayList<>();
-        for (Iterator<Menu> iterator = list.iterator(); iterator.hasNext(); ) {
-            Menu t = iterator.next();
+        for (Menu t : list) {
             // 一、根据传入的某个父节点ID,遍历该父节点的所有子节点
             if (t.getParentId() == parentId) {
                 recursionFn(list, t);
@@ -196,8 +195,6 @@ public class MenuServiceImpl implements MenuService {
     /**
      * 递归列表
      *
-     * @param list
-     * @param t
      */
     private void recursionFn(List<Menu> list, Menu t) {
         // 得到子节点列表
@@ -206,9 +203,7 @@ public class MenuServiceImpl implements MenuService {
         for (Menu tChild : childList) {
             if (hasChild(list, tChild)) {
                 // 判断是否有子节点
-                Iterator<Menu> it = childList.iterator();
-                while (it.hasNext()) {
-                    Menu n = it.next();
+                for (Menu n : childList) {
                     recursionFn(list, n);
                 }
             }
@@ -220,9 +215,7 @@ public class MenuServiceImpl implements MenuService {
      */
     private List<Menu> getChildList(List<Menu> list, Menu t) {
         List<Menu> tlist = new ArrayList<>();
-        Iterator<Menu> it = list.iterator();
-        while (it.hasNext()) {
-            Menu n = it.next();
+        for (Menu n : list) {
             if (n.getParentId().longValue() == t.getId().longValue()) {
                 tlist.add(n);
             }

@@ -35,7 +35,8 @@ public class AddressUtils {
             return "内网IP";
         }
         String rspStr = HttpUtils.sendPost(IP_URL, "ip=" + ip);
-        if (StringUtils.isEmpty(rspStr)) {
+        System.out.println("rspStr = " + rspStr);
+        if (StringUtils.isEmpty(rspStr)||!rspStr.contains("data")||!rspStr.contains("region")||!rspStr.contains("city")) {
             log.error("获取地理位置异常 {}", ip);
             return address;
         }

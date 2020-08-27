@@ -96,6 +96,13 @@ public class SysUser extends BaseEntity implements Serializable {
     private Long[] roleIds;
 
     public boolean isAdmin() {
+        if (roles!=null) {
+            for (Role role : roles) {
+                if (isAdmin(role.getId())) {
+                    return true;
+                }
+            }
+        }
         return isAdmin(this.id);
     }
 
