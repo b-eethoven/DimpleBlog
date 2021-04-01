@@ -1,11 +1,11 @@
 package com.dimple.temp;
 
-import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class WorkorderpushApplicationTests {
 
-    @Test
+    //@Test
     void contextLoads() {
     }
 
